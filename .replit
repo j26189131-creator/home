@@ -1,17 +1,13 @@
 modules = ["nodejs-20", "web", "postgresql-16"]
-run = "npm run dev"
+run = "npm start"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
 [nix]
 channel = "stable-24_05"
 
 [[ports]]
-localPort = 5173
-externalPort = 80
-
-[[ports]]
 localPort = 5000
-externalPort = 5000
+externalPort = 80
 
 [env]
 PORT = "5000"
@@ -20,6 +16,7 @@ PORT = "5000"
 deploymentTarget = "static"
 build = ["npm", "run", "build"]
 publicDir = "client/dist"
+run = ["npm", "start"]
 
 [workflows]
 runButton = "Project"
@@ -39,8 +36,8 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npm run dev"
-waitForPort = 5173
+args = "npm start"
+waitForPort = 5000
 
 [agent]
 mockupState = "MOCKUP"
